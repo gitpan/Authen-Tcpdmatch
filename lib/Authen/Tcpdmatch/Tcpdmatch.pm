@@ -6,29 +6,19 @@ package Authen::Tcpdmatch::Tcpdmatch;
 use 5.006;
 use strict;
 use warnings;
-use base 'Exporter';
-use Attribute::Handlers;
-use Authen::Tcpdmatch::Grammar;
+use base qw( Exporter ) ;
 
 
-our $VERSION     = '0.02';
-our @EXPORT      = qw(  tcpdmatch );
-
-
-my  Authen::Tcpdmatch::Grammar   $p : TcpdParser  ;
-
-
-sub check_file {
-	my ($service, $remote, $file)  = @_;
-	local undef $/ ,  open (my $fh , $file)   or return ;
-	$p->Start( scalar <$fh> , 0 , $service , $remote );
+BEGIN  {
+	my $algorithm =  $ENV{TCPDMATCH} || 'Yapp' ;
+	eval "use Authen::Tcpdmatch::Tcpdmatch$algorithm" ;
 }
 
-sub tcpdmatch ($$;$)  {
-	my ( $service, $remote, $dir) = @_ ;
-	(check_file    $service,  $remote,  ($dir ||'/etc') . "/hosts.allow" )    or
-	! (check_file  $service,  $remote,  ($dir ||'/etc') . "/hosts.deny")      or   undef;
-}
+
+our $VERSION     = '0.03';
+our @EXPORT      = qw(  tcpdmatch check);
+
+
 
 
 1;
@@ -46,19 +36,17 @@ Authen::Tcpdmatch - Perl extension for parsing  hosts.allow  and  hosts.deny
 
 =head1 DESCRIPTION
 
-This module implements the core functionality of tcpdmatch: it consults hosts.allow
+This module in a front-end to the core functionality of tcpdmatch, which consults hosts.allow
 and hosts.deny to decide if service should be granted. 
 
-Due to its tiny size (2k bytes), this module is best suited for embedded environments,
-or to modules that need this type of authentication.
-Although this is not a full-feature implementation of tcpdmatch(1), 
-it supports the following capabilities:
+Its sole purpose is to choose load either TcpdmatchYapp (a yapp parser), or 
+TcpdmatchRD ( a RecDescent parser) . The default action is to load
+the yapp parser since it is serval times faster than RecDescent, and it 
+is a lot easier to make it re-entrant.
 
- A. ALL and LOCAL wildcards.
- B. Recursive EXCEPT  modifier
- C. Leading and trailing dot patterns
- D. Netmasks
- E. Skipping lines with faulty syntax, comments, or blanks
+Set the environment veriable  TCPDMATCH to "RD" in order to use the RecDescent parser,
+or just ingore this module and load  "use  Authen::Tcpdmatch::TcpdmatchRD"  instead.
+The use interface is the same for all Authen::Tcpdmatch::Tcpdmatch*  modules.
 
 =over
 

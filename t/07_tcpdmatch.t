@@ -1,6 +1,6 @@
-
-use Test::More;
 use Authen::Tcpdmatch::Tcpdmatch;
+use Test::More;
+
 
 BEGIN { plan tests => 6 }
 
@@ -13,5 +13,4 @@ ok     tcpdmatch(   'ssh'  ,   'red'      , $dir  );
 ok     tcpdmatch(   'zebra',   'red'      , $dir  );
 is   +(tcpdmatch(   'irc'  ,   'red'      , $dir  )),  undef ;
 is   +(tcpdmatch(   'zebra',   'red.com'  , $dir  )),  undef ;
-
 

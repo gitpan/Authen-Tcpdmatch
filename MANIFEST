@@ -3,7 +3,14 @@ MANIFEST
 Makefile.PL
 README
 lib/Authen/Tcpdmatch/Grammar.pm
+lib/Authen/Tcpdmatch/Lexer.pm
 lib/Authen/Tcpdmatch/Tcpdmatch.pm
+lib/Authen/Tcpdmatch/TcpdmatchRD.pm
+lib/Authen/Tcpdmatch/TcpdmatchYapp.pm
+lib/Authen/Tcpdmatch/YappParser.pm
+lib/Authen/Tcpdmatch/grammar.yp
+scripts/bench.pl
+t/.exrc
 t/00_basic.t
 t/01_byname.t
 t/02_wildcard.t

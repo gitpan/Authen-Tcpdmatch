@@ -1,35 +1,31 @@
+use Authen::Tcpdmatch::Tcpdmatch;
 use Test::More;
-use Authen::Tcpdmatch::Grammar;
 
-
-plan tests => 15;
-
-my  Authen::Tcpdmatch::Grammar   $r : TcpdParser  ;
-
+BEGIN { plan tests=> 15 }
 
 
 
 ##############################################################  SERVICES
 
-ok      $r->Start( 'ALL: red'                  =>   qw( 0  tcp  red  ));
-ok      $r->Start( 'irc ALL: red'              =>   qw( 0  tcp  red  ));
-is    +($r->Start( 'ALL EXCEPT tcp: red'       =>   qw( 0  tcp  red  ))),  undef;
-ok      $r->Start( 'tcp EXCEPT irc, chat: red' =>   qw( 0  tcp  red  ));
-ok      $r->Start( 'ALL: ALL'                  =>   qw( 0  tcp  red  ));
-ok      $r->Start( 'ALL: LOCAL'                =>   qw( 0  tcp  red  ));
+ok      check( 'ALL: red'                  =>   qw(  tcp  red  ));
+ok      check( 'irc ALL: red'              =>   qw(  tcp  red  ));
+is    +(check( 'ALL EXCEPT tcp: red'       =>   qw(  tcp  red  ))),  undef;
+ok      check( 'tcp EXCEPT irc, chat: red' =>   qw(  tcp  red  ));
+ok      check( 'ALL: ALL'                  =>   qw(  tcp  red  ));
+ok      check( 'ALL: LOCAL'                =>   qw(  tcp  red  ));
 
 
 ##############################################################  REMOTES
 
-ok      $r->Start( 'tcp: LOCAL'                =>   qw( 0  tcp  red   ));
-is    +($r->Start( 'tcp: LOCAL'                =>   qw( 0  tcp  r.edu ))) , undef ;
-ok      $r->Start( 'tcp: LOCAL, red'           =>   qw( 0  tcp  red   ));
-ok      $r->Start( 'tcp: red LOCAL'            =>   qw( 0  tcp  red   ));
-is    +($r->Start( 'tcp: red LOCAL'            =>   qw( 0  tcp  r.edu ))) , undef ;
+ok      check( 'tcp: LOCAL'                =>   qw(  tcp  red   ));
+is    +(check( 'tcp: LOCAL'                =>   qw(  tcp  r.edu ))) , undef ;
+ok      check( 'tcp: LOCAL, red'           =>   qw(  tcp  red   ));
+ok      check( 'tcp: red LOCAL'            =>   qw(  tcp  red   ));
+is    +(check( 'tcp: red LOCAL'            =>   qw(  tcp  r.edu ))) , undef ;
   
-is    +($r->Start( 'tcp: ALL EXCEPT red  '     =>   qw( 0  tcp  red   ))),  undef;
-ok      $r->Start( 'tcp: ALL EXCEPT ntro '     =>   qw( 0  tcp  red   ));
+is    +(check( 'tcp: ALL EXCEPT red  '     =>   qw(  tcp  red   ))),  undef;
+ok      check( 'tcp: ALL EXCEPT ntro '     =>   qw(  tcp  red   ));
 
-is    +($r->Start( 'tcp EXCEPT ALL: red'       =>   qw( 0  tcp  red   ))),  undef;
-is    +($r->Start( 'tcp: ALL EXCEPT LOCAL'     =>   qw( 0  tcp  red   ))),  undef;
+is    +(check( 'tcp EXCEPT ALL: red'       =>   qw(  tcp  red   ))),  undef;
+is    +(check( 'tcp: ALL EXCEPT LOCAL'     =>   qw(  tcp  red   ))),  undef;
 

@@ -1,25 +1,21 @@
+use Authen::Tcpdmatch::Tcpdmatch;
 use Test::More;
-use Authen::Tcpdmatch::Grammar;
 
-
-plan tests => 8;
-
-my  Authen::Tcpdmatch::Grammar   $r : TcpdParser  ;
+BEGIN { plan tests=> 6 }
 
 
 
-ok     $r->Start( "tcp : red \n ftp   : ntro" ,   qw( 0  tcp  red )) ;
-ok     $r->Start( "tcp : red \n ftp   : ntro" ,   qw( 0  ftp  ntro )) ;
-ok     $r->Start( "tcp : red \n\n ftp : ntro" ,   qw( 0  ftp  ntro )) ;
-ok     $r->Start( "tcp : red \n ftp     ntro" ,   qw( 0  tcp  red )) ;
-ok     $r->Start( "tcp   red \n\n ftp : ntro" ,   qw( 0  ftp  ntro )) ;
+ok     check( "tcp : red \n ftp   : ntro" ,   qw(  tcp  red  )) ;
+ok     check( "tcp : red \n ftp   : ntro" ,   qw(  ftp  ntro )) ;
+ok     check( "tcp : red \n\n ftp : ntro" ,   qw(  ftp  ntro )) ;
 
-is   +( $r->Start( "tcp : red \n ftp : ntro" ,   qw( 0  tcp  ntro ))),  undef ;
-is   +( $r->Start( "tcp : red \n ftp : ntro" ,   qw( 0  ftp  red  ))),  undef ;
+is   +(check( "tcp : red \n ftp : ntro" ,   qw(  tcp  ntro ))),  undef ;
+is   +(check( "tcp : red \n ftp : ntro" ,   qw(  ftp  red  ))),  undef ;
 
-
-ok     $r->Start( <<'' ,   qw( 0  tcp  red )) ;
+ok     check( <<'' ,   qw(  tcp  red )) ;
 #afa
-irc   red
 tcp : red
 
+__END__
+ok     check( "tcp   red \n\n ftp : ntro" ,   qw(  ftp  ntro )) ;
+ok     check( "tcp : red \n ftp     ntro" ,   qw(  tcp  red )) ;
