@@ -1,5 +1,8 @@
 Revision history for Perl extension Authen::Tcpdmatch.
 
+0.01  Tue Sep 30 00:47:44 2003
+       - added function prototype to tcpdmatch
+
 0.01  Sat Sep 27 21:32:00 2003
 	- original version; created by h2xs 1.21 with options
 		-A -n Authen::Tcpdmatch

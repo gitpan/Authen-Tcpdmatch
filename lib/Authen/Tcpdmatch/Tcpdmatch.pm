@@ -11,7 +11,7 @@ use Attribute::Handlers;
 use Authen::Tcpdmatch::Grammar;
 
 
-our $VERSION     = '0.01';
+our $VERSION     = '0.02';
 our @EXPORT      = qw(  tcpdmatch );
 
 
@@ -24,7 +24,7 @@ sub check_file {
 	$p->Start( scalar <$fh> , 0 , $service , $remote );
 }
 
-sub tcpdmatch {
+sub tcpdmatch ($$;$)  {
 	my ( $service, $remote, $dir) = @_ ;
 	(check_file    $service,  $remote,  ($dir ||'/etc') . "/hosts.allow" )    or
 	! (check_file  $service,  $remote,  ($dir ||'/etc') . "/hosts.deny")      or   undef;
@@ -40,9 +40,9 @@ Authen::Tcpdmatch - Perl extension for parsing  hosts.allow  and  hosts.deny
 =head1 SYNOPSIS
 
   use Authen::Tcpdmatch;
-  tcpdmatch   qw(  ftp    red.haw.org        )
-  tcpdmatch   qw(  ftp    192.168.0.1        )
-  tcpdmatch   qw(  ftp    red.haw.org   /etc )
+  tcpdmatch(  'ftp',  'red.haw.org'          )
+  tcpdmatch(  'ftp',  '192.168.0.1'          )
+  tcpdmatch(  'ftp',  'red.haw.org' ,   /etc )
 
 =head1 DESCRIPTION
 
