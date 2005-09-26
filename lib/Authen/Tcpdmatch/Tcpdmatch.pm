@@ -10,12 +10,13 @@ use base qw( Exporter ) ;
 
 
 BEGIN  {
-	my $algorithm =  $ENV{TCPDMATCH} || 'Yapp' ;
+	my $algorithm =  $ENV{TCPDMATCH} || 'RD' ;
+	#my $algorithm =  $ENV{TCPDMATCH} || 'Yapp' ;
 	eval "use Authen::Tcpdmatch::Tcpdmatch$algorithm" ;
 }
 
 
-our $VERSION     = '0.03';
+our $VERSION     = '0.04';
 our @EXPORT      = qw(  tcpdmatch check);
 
 
@@ -40,13 +41,20 @@ This module in a front-end to the core functionality of tcpdmatch, which consult
 and hosts.deny to decide if service should be granted. 
 
 Its sole purpose is to choose load either TcpdmatchYapp (a yapp parser), or 
-TcpdmatchRD ( a RecDescent parser) . The default action is to load
+TcpdmatchRD ( a RecDescent parser) . In previous releases the default
+parser was yapp, but the default is now set to RecDecent since yapp is presently
+disabled.
+
+=for hide
+
+The default action is to load
 the yapp parser since it is serval times faster than RecDescent, and it 
 is a lot easier to make it re-entrant.
 
 Set the environment veriable  TCPDMATCH to "RD" in order to use the RecDescent parser,
 or just ingore this module and load  "use  Authen::Tcpdmatch::TcpdmatchRD"  instead.
 The use interface is the same for all Authen::Tcpdmatch::Tcpdmatch*  modules.
+=end
 
 =over
 

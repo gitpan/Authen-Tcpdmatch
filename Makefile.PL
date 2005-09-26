@@ -1,17 +1,15 @@
 use ExtUtils::MakeMaker;
-
-WriteMakefile(
-    'NAME'		=> 'Authen::Tcpdmatch',
-    'VERSION_FROM'	=> 'lib/Authen/Tcpdmatch/Tcpdmatch.pm',
-    'PREREQ_PM'		=> { 
-			     Test::More          => 0,
-			     Attribute::Handlers => 0,
-			     NetAddr::IP         => 0,
-			     Parse::RecDescent   => 0,
-			     Parse::Yapp         => 0,
-			     Parse::Lex          => 0,
-			   }, 
-    ($] >= 5.005 ?    
-      (ABSTRACT_FROM    => 'lib/Authen/Tcpdmatch/Tcpdmatch.pm', 
-       AUTHOR           => 'Ioannis Tambouras <ioannis@earthlink.net>') : ()),
+WriteMakefile
+(
+          'INSTALLDIRS'  => 'site',
+          'NAME'         => 'Authen-Tcpdmatch',
+          'VERSION_FROM' => 'lib/Authen/Tcpdmatch/Tcpdmatch.pm',
+          'PL_FILES'     => {},
+          'PREREQ_PM'    => {
+                             'NetAddr::IP'         => '3.14',
+                             'Attribute::Handlers' =>      0,
+                             'Parse::RecDescent'   =>      0,
+                            },
+           ABSTRACT_FROM => 'lib/Authen/Tcpdmatch/Tcpdmatch.pm', 
+           AUTHOR        => 'Ioannis Tambouras <ioannis@earthlink.net>',
 );

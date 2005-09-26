@@ -1,5 +1,11 @@
 Revision history for Perl extension Authen::Tcpdmatch.
 
+0.04  Sun Sep 25 23:07:51 2005
+       - Disabled yapp parser and yapp tests. They will come back when 
+	 Parse::Flex is updated.
+       - Packaging changes to keep CPANTS happy.
+       - Now, also builds with Module::Build.
+
 0.03  Sun Oct 12 02:47:44 2003
        - Added a Yapp parser with a Parse::Lex lexer .
        - The Yapp parser is several times faster than P::RD and
