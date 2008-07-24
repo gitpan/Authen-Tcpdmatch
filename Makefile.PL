@@ -1,6 +1,7 @@
 use ExtUtils::MakeMaker;
 WriteMakefile
 (
+          'LICENSE'      => 'gpl',
           'INSTALLDIRS'  => 'site',
           'NAME'         => 'Authen-Tcpdmatch',
           'VERSION_FROM' => 'lib/Authen/Tcpdmatch/Tcpdmatch.pm',

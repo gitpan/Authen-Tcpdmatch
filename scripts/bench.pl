@@ -1,3 +1,6 @@
+### NOTE:  Don't run the bench test for this release since
+###        TcpdmatchYapp is presently disabled
+
 use  Benchmark qw( cmpthese ) ;
 
 
