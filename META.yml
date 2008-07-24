@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                Authen-Tcpdmatch
-version:             0.05
+version:             0.06
 abstract:            Perl extension for parsing  hosts.allow  and  hosts.deny
 license:             gpl
 author:              

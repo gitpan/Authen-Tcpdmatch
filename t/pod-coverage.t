@@ -1,4 +1,5 @@
-use Test::More tests=>1 ;
+use Test::More qw( no_plan );
+use warnings;
 eval "use Test::Pod::Coverage 1.00";
 plan skip_all => "Test::Pod::Coverage 1.00 required for POD coverage" if $@;
 

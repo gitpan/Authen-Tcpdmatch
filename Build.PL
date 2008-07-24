@@ -3,7 +3,7 @@ my $b= Module::Build->new(
 	module_name        => 'Authen-Tcpdmatch',
 	dist_version_from  => 'lib/Authen/Tcpdmatch/Tcpdmatch.pm',
 	dist_author        => 'Ioannis Tambouras <ioannis@yahoo.com>',
-	requires           => {  perl                =>  '5.6',
+	requires           => {  perl                =>  '5.006',
 				'Parse::RecDescent'  =>      0,
 				'Attribute::Handlers'=>      0,
 				'NetAddr::IP'        => '3.14',

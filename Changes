@@ -1,5 +1,8 @@
 Revision history for Perl extension Authen::Tcpdmatch.
 
+0.06  Thu Jul 24 19:01:53 2008
+       - Fixed Perl version ( to 5.006 )
+
 0.04  Sun Sep 25 23:07:51 2005
        - Disabled yapp parser and yapp tests. They will come back when 
 	 Parse::Flex is updated.
